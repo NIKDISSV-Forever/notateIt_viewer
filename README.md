@@ -13,4 +13,4 @@ options:
   -o, --output OUTPUT  Output assets and final .json file directory
   -m, --minimize       Minimize the final .json file
 ```
-[!Icon](./icon.png)
+![App Icon](icon.png)
