@@ -1,17 +1,16 @@
 [project]
 name = "notateit-viewer"
-version = "1.0.0"
+version = "1.0.1"
 description = "Notateit Viewer Remake"
 authors = [
-    { name = "Nikita Denissov", email = "nikdissv@proton.me" }
+    { name = "Nikita Denissov", email = "n.denissov@proton.me" }
 ]
 readme = "README.md"
 requires-python = ">=3.13,<3.14"
 dependencies = [
-    "pillow (>=11.3.0,<12.0.0)",
-    "pyside6 (>=6.9.3,<7.0.0)",
+    "pillow (>=12.1.1,<13.0.0)",
+    "pyside6 (>=6.10.2,<7.0.0)"
 ]
-
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
@@ -19,5 +18,6 @@ build-backend = "poetry.core.masonry.api"
 
 [dependency-groups]
 dev = [
-    "pyinstaller (>=6.16.0,<7.0.0)"
+    "nuitka (>=4.0,<5.0)",
+    "zstandard (>=0.25.0,<0.26.0)"
 ]

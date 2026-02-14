@@ -1,4 +1,4 @@
-__author__ = 'NIKDISSV'
+__author__ = 'Nikita Denissov'
 
 import math
 from pathlib import Path
@@ -18,7 +18,7 @@ try:
     FONT = ImageFont.truetype(str(FONT_PATH), FONT_SIZE)
     FONT_TITLE = ImageFont.truetype(str(FONT_PATH), FONT_TITLE_SIZE)
 except IOError:
-    print("Шрифт Arial не найден. Используется стандартный шрифт.")
+    print("Arial font not found, default font used.")
     FONT = ImageFont.load_default(size=48)
     FONT_TITLE = ImageFont.load_default(size=64)
 
@@ -66,9 +66,9 @@ def get_prepared_objects(page_objects: List[Dict[str, Any]], page_num: int):
                     {'type': 'image', 'content': img, 'width': img.width, 'height': img.height, 'original_data': obj}
                 )
             except FileNotFoundError:
-                print(f"ПРЕДУПРЕЖДЕНИЕ: Файл изображения не найден: {img_path}")
+                print(f'WARNING: Image file not found: {img_path}')
         elif obj['type'] == 'Text':
-            font_to_use = FONT_TITLE if i < 2 and len(page_objects) > 2 else FONT
+            font_to_use = FONT_TITLE if i < 2 < len(page_objects) else FONT
             wrapped_text = wrap_text(obj['value'], font_to_use, MAX_WIDTH_PER_OBJECT)
             bbox = temp_draw.multiline_textbbox((0, 0), wrapped_text, font=font_to_use)
             text_width, text_height = bbox[2] - bbox[0], bbox[3] - bbox[1]

@@ -1,4 +1,4 @@
-__author__ = 'NIKDISSV'
+__author__ = 'Nikita Denissov'
 
 import re
 import struct

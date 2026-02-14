@@ -1,4 +1,4 @@
-__author__ = 'NIKDISSV'
+__author__ = 'Nikita Denissov'
 
 import sys
 from argparse import ArgumentParser
@@ -6,7 +6,7 @@ from pathlib import Path
 
 from PIL import Image
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QAction, QKeySequence
+from PySide6.QtGui import QAction, QKeySequence, QIcon
 from PySide6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QPushButton, QLabel, QFileDialog, QScrollArea, QStatusBar, QMessageBox
@@ -20,6 +20,7 @@ from .ui_components import SlideViewer, PresentationWindow
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.close_action = None
         self.presentation_action = None
         self.setWindowTitle("Notateit Viewer Remake")
         self.setGeometry(100, 100, 1024, 768)
@@ -180,6 +181,16 @@ class MainWindow(QMainWindow):
         self.showMinimized()
 
 
+def get_icon_path() -> Path:
+    filepath = Path('/usr/share/icons/hicolor/512x512/apps/notateit_remake.png')
+    if filepath.is_file():
+        return filepath
+    filepath = Path(getattr(sys, '_MEIPASS', Path(sys.executable).parent), 'notateit_remake.png')
+    if filepath.is_file():
+        return filepath
+    return Path(__file__).parent / 'notateit_remake.png'
+
+
 def main():
     parser = ArgumentParser()
     parser.add_argument('input', nargs='?', help='Input .nat file path', type=Path)
@@ -202,12 +213,18 @@ def main():
             print(f'Exported to {assets_dir}, saved to {output_path}')
         return
     app = QApplication(sys.argv)
+    app_icon = QIcon(str(get_icon_path()))
+    if not app_icon.isNull():
+        app.setWindowIcon(app_icon)
+    app.setDesktopFileName("notateit.viewer.remake")
     window = MainWindow()
     window.show()
     if input_path is not None:
         window.open_file(file_path_str=input_path)
     sys.exit(app.exec())
 
-
+"""
+python3 -m nuitka --standalone --onefile --enable-plugin=pyside6 --output-dir=build --include-data-file=notateit_viewer/icon.png=icon.png main.py
+"""
 if __name__ == '__main__':
     main()

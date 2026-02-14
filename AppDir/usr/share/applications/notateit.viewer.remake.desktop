@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=NotateIt Viewer Remake
+Exec=notateit_remake
+Icon=notateit_remake
+Type=Application
+Categories=Office;
+StartupWMClass=notateit.viewer.remake

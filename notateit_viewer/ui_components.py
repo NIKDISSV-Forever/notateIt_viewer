@@ -1,4 +1,4 @@
-__author__ = 'NIKDISSV'
+__author__ = 'Nikita Denissov'
 
 import os
 import shutil
@@ -13,34 +13,6 @@ from PySide6.QtWidgets import (
     QTextEdit, QVBoxLayout, QHBoxLayout, QPushButton
 )
 from PySide6.QtWidgets import (QWidget, QLabel, QSizePolicy)
-
-
-class TextViewerDialog(QDialog):
-    def __init__(self, text, parent=None):
-        super().__init__(parent)
-        self.setWindowTitle("Text Content")
-        self.text_edit = QTextEdit()
-        self.text_edit.setPlainText(text)
-        self.text_edit.setReadOnly(True)
-
-        self.copy_button = QPushButton("Copy All")
-        self.copy_button.clicked.connect(self.copy_text_to_clipboard)
-        self.close_button = QPushButton("Close")
-        self.close_button.clicked.connect(self.accept)
-
-        button_layout = QHBoxLayout()
-        button_layout.addStretch()
-        button_layout.addWidget(self.copy_button)
-        button_layout.addWidget(self.close_button)
-
-        layout = QVBoxLayout(self)
-        layout.addWidget(self.text_edit)
-        layout.addLayout(button_layout)
-        self.setLayout(layout)
-        self.resize(500, 400)
-
-    def copy_text_to_clipboard(self):
-        QApplication.clipboard().setText(self.text_edit.toPlainText())
 
 
 class TextViewerDialog(QDialog):
@@ -70,7 +42,7 @@ class TextViewerDialog(QDialog):
 
 
 class InteractiveObjectWidget(QPushButton):
-    """Интерактивный объект (текст или изображение)"""
+    """Interactive object (text or image)"""
 
     def __init__(self, obj_data, parent=None):
         super().__init__(parent)
