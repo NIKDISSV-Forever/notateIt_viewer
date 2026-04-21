@@ -1,6 +1,6 @@
 [project]
 name = "notateit-viewer"
-version = "1.0.1"
+version = "1.0.2"
 description = "Notateit Viewer Remake"
 authors = [
     { name = "Nikita Denissov", email = "n.denissov@proton.me" }
@@ -9,8 +9,11 @@ readme = "README.md"
 requires-python = ">=3.13,<3.14"
 dependencies = [
     "pillow (>=12.1.1,<13.0.0)",
-    "pyside6 (>=6.10.2,<7.0.0)"
+    "pyside6 (>=6.10.0,<7.0.0)"
 ]
+
+[project.scripts]
+notateit-viewer = "notateit_viewer.__main__:main"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
